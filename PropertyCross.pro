@@ -61,6 +61,6 @@ macx {
 
 DISTFILES += \
     qml/SearchPage.qml \
-    qml/model/Client.qml \
+    qml/model/HttpClient.qml \
     qml/model/Logic.qml \
     qml/pages/ListingsListPage.qml

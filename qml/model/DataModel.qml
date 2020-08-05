@@ -10,7 +10,7 @@ Item {
 
     signal listingsReceived
 
-    Client {
+    HttpClient {
         id: client
     }
 
