@@ -12,7 +12,7 @@ Page {
 
         ActivityIndicatorBarItem {
             visible: true
-            animating: false
+            animating: dataModel.loading
         }
 
         IconButtonBarItem {
@@ -70,6 +70,7 @@ Page {
                 text: qsTr("Go")
                 fontCapitalization: Font.Capitalize
                 onClicked: search()
+                enabled: !dataModel.loading
             }
 
             AppButton {

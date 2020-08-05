@@ -18,7 +18,12 @@ Item {
         id: logicConnection
 
         onSearchListings: {
+            _.reset()
             client.search(searchText, _.responseCallback)
+        }
+
+        onLoadNextPage: {
+            client.repeatForPage(_.currentPage + 1, _.responseCallback)
         }
     }
 
@@ -31,6 +36,10 @@ Item {
         property var listings: []
         property int numTotalListings: 0
         property int currentPage: 1
+
+        function reset() {
+            listings = []
+        }
 
         function createListingsModel(source, parseValues) {
             return source.map(function(data) {
@@ -53,7 +62,7 @@ Item {
 
             if (successCodes.indexOf(code) >= 0) {//location found
                 currentPage = parseInt(response.page)
-                listings = response.listings//listings.concat(response.listings)
+                listings = listings.concat(response.listings)
                 numTotalListings = response.total_results || 0
 
                 listingsReceived()
