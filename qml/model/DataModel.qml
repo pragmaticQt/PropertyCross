@@ -5,6 +5,8 @@ Item {
     property alias dispatcher: logicConnection.target
     readonly property var listings: _.createListingsModel(_.listings)
     readonly property alias loading: client.loading
+    readonly property alias numTotalListings: _.numTotalListings
+    readonly property int numListings: _.listings.length
 
     signal listingsReceived
 
@@ -51,9 +53,11 @@ Item {
 
             if (successCodes.indexOf(code) >= 0) {//location found
                 currentPage = parseInt(response.page)
-                listings = listings.concat(response.listings)
+                listings = response.listings//listings.concat(response.listings)
                 numTotalListings = response.total_results || 0
+
                 listingsReceived()
+
             } else if (ambiguousCodes.indexOf(code) >= 0) {
                 locations = response.locations
             } else if (code === "210") {
