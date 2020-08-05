@@ -22,13 +22,18 @@ ListPage {
 
     emptyText.text: favourites ? qsTr("No favourates chosen") : qsTr("No listings available")
 
+    Component {
+        id: detailPageComponent
+        ListingsDetailPage {}
+    }
+
     delegate: SimpleRow {
         item: listModel.get(index)
         autoSizeImage: true
         imageMaxSize: dp(40)
         image.fillMode: Image.PreserveAspectCrop
 
-        onSelected: navigationStack.popAllExceptFirstAndPush(detailPageComponent, {model: item.model})
+        onSelected: navigationStack.push(detailPageComponent, {model: item.model})
     }
 
     listView.footer: VisibilityRefreshHandler {

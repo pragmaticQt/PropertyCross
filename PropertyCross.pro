@@ -63,4 +63,5 @@ DISTFILES += \
     qml/SearchPage.qml \
     qml/model/HttpClient.qml \
     qml/model/Logic.qml \
+    qml/pages/ListingsDetailPage.qml \
     qml/pages/ListingsListPage.qml
