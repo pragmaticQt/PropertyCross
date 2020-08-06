@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Felgo 3.0
+import Qt.labs.settings 1.1
 
 Item {
     property alias dispatcher: logicConnection.target
@@ -10,6 +11,14 @@ Item {
     readonly property var favouriteListings: _.createListingsModel(_.favouriteListings, true)
 
     signal listingsReceived
+
+    Settings {
+        property string favListings: JSON.stringify(_.favouriteListings)
+
+        Component.onCompleted: {
+            _.favouriteListings = favListings && JSON.parse(favListings) || []
+        }
+    }
 
     HttpClient {
         id: client
