@@ -18,9 +18,9 @@ ListPage {
         fields: ["text", "detailText", "image", "model"]
     }
 
-    title: favourites ? qsTr("Favourates") : qsTr("%1 of %2 matches").arg(dataModel.numListings).arg(dataModel.numTotalListings)
+    title: favourites ? qsTr("Favourites") : qsTr("%1 of %2 matches").arg(dataModel.numListings).arg(dataModel.numTotalListings)
 
-    emptyText.text: favourites ? qsTr("No favourates chosen") : qsTr("No listings available")
+    emptyText.text: favourites ? qsTr("No favourites chosen") : qsTr("No listings available")
 
     Component {
         id: detailPageComponent

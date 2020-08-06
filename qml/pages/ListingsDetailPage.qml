@@ -4,7 +4,7 @@ import Felgo 3.0
 Page {
 
     property var model: ({})
-    readonly property bool isFavourite: true //dataModel.isFavourite(model)
+    readonly property bool isFavourite: dataModel.isFavourite(model)
 
     title: qsTr("Property details")
 

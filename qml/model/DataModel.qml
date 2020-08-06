@@ -7,6 +7,7 @@ Item {
     readonly property alias loading: client.loading
     readonly property alias numTotalListings: _.numTotalListings
     readonly property int numListings: _.listings.length
+    readonly property var favouriteListings: _.createListingsModel(_.favouriteListings, true)
 
     signal listingsReceived
 
@@ -25,6 +26,20 @@ Item {
         onLoadNextPage: {
             client.repeatForPage(_.currentPage + 1, _.responseCallback)
         }
+
+        onToggleFavourite: {
+            var listingDataStr = JSON.stringify(listingData)
+            var index = _.favouriteListings.indexOf(listingDataStr)
+            if (index === -1) {
+                console.debug("Listing added")
+                _.favouriteListings.push(listingDataStr)
+            } else {
+                console.debug("Listing removed")
+                _.favouriteListings.splice(index, 1)
+            }
+
+            _.favouriteListingsChanged()
+        }
     }
 
     Item {
@@ -34,6 +49,7 @@ Item {
         readonly property var ambiguousCodes: ["200", "202"]
         property var locations: []
         property var listings: []
+        property var favouriteListings: []
         property int numTotalListings: 0
         property int currentPage: 1
 
@@ -75,5 +91,9 @@ Item {
                 locations = []
             }
         }
+    }
+
+    function isFavourite(listingsData) {
+        return _.favouriteListings.indexOf(JSON.stringify(listingsData)) !== -1
     }
 }
