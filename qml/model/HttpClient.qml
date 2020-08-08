@@ -11,7 +11,7 @@ Item {
 
     Item {
         id: _ //private member
-        readonly property string serverUrl: "https://my-json-server.typicode.com/ProgmaticProgrammer/property-cross/db"
+        readonly property string serverUrl: "http://localhost:5000/api/property" //"https://my-json-server.typicode.com/ProgmaticProgrammer/property-cross/db"
         property var lastParamMap: ({})
 
         function buildUrl(paramMap) {
